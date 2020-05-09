@@ -1,18 +1,18 @@
 //*-----------------Creating Table----------------------*//
 
-	create table petrol (distributer_id STRING,distributer_name STRING,amt_IN STRING,amy_OUT STRING,
+	create table petrol (Distributor_id STRING,distributor_name STRING,amt_IN STRING,amt_OUT STRING,
 		     vol_IN INT,vol_OUT INT,year INT) 
-	row format delimited fields terminated by ‘,’ stored as textfile;
+	row format delimited fields terminated by â€˜,â€™ stored as textfile;
 
 //*-----------------------Loading Data------------------*//
 
-	load data local inpath ‘/home/Desktop/bdh/petrol.txt’ into table petrol;
+	load data local inpath â€˜/home/Desktop/bdh/petrol.txtâ€™ into table petrol;
 
 *******************************************************************************
 
 Q.1) In real life what is the total amount of petrol in volume sold by every distributor?
 
-	SELECT distributer_name,SUM(vol_OUT) FROM petrol GROUP BY distributer_name;
+	SELECT distributor_name,SUM(vol_OUT) FROM petrol GROUP BY distributor_name;
 
 Q.2) Which are the top 10 distributors ID's for selling petrol & also display the amount of petrol sold
      in volume by them individually?
@@ -25,9 +25,9 @@ Q.3) Find real life 10 distributor name who sold petrol in the least amount.
 
 Q.4) List all distributors who have this difference, along with the year and the difference which they have in that year.
 	(((((The constraint to this query is the difference between volumeIN and volumeOuT is illegal in real life if 
-    	 greater than 500. As we see all distributors are receiving patrols on every next cycle.)))))
+    	 greater than 500. As we see all distributors are receiving petrols on every next cycle.)))))
 	
-	SELECT Name_Distributer,(vol_IN-vol_OUT) as Difference,year FROM petrol GROUP BY Name_Distributer,
+	SELECT Name_Distributor,(vol_IN-vol_OUT) as Difference,year FROM petrol GROUP BY Name_Distributor,
 		Difference,year having (vol_IN - vol_OUT) > 500;
 
 
